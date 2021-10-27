@@ -10,8 +10,8 @@ function App() {
   return (
     <Router>
     <div >
-     <Route path= "/" render={(routerProps) => <MainSearch {...routerProps} />}/>
-     <Route exact path= "/details/:id" component={Details}/>
+     <Route path= "/" render={(routerProps) => <MainSearch {...routerProps}/>}/>
+     <Route exact path= "/details/:id" render={(routerProps) => <Details {...routerProps} />}  />
 
      {/* <Route exact path= "/home" component={MainSearch}/> */}
     </div>
