@@ -72,7 +72,7 @@ const MainSearch = ({history}: RouteComponentProps & MainSearcProps ) => {
     <tr>
       <td></td>
       <td onClick={() => history.push('/details/:' + p.id)}>
-        <Details/>
+        <Details id={p.id} musicData={p}/>
         {p.title}</td> 
       <td>{p.artist.name}</td>
       <td>{p.album.title}</td>
