@@ -2,17 +2,23 @@ import { ChangeEvent, useEffect, useState } from "react"
 import {Col, Form, Row, Table} from "react-bootstrap"
 import { RouteComponentProps } from "react-router"
 import Music from "../types/music"
-import {Link} from 'react-router-dom'
+
 
 
 interface MainSearcProps {
-  pathname: number
+  id: number 
+}
+interface RouteComponentProps {
+  history: number
+  match: string
 }
 
-const MainSearch = ({history}: RouteComponentProps) => {
+type AllTheProps = MainSearcProps & RouteComponentProps
+
+const MainSearch = ({history}: RouteComponentProps & MainSearcProps ) => {
   const [music, setMusic] = useState<Music[]>([])
   const [query, setQuery] = useState("")
-  const [id, setId] = useState("")
+
   useEffect(() => {
     const fetchMusic = async () => {
      try {
@@ -22,7 +28,6 @@ const MainSearch = ({history}: RouteComponentProps) => {
          console.log("fetchedMusic",fetchedMusic )
          const arrayOfMusic = fetchedMusic.data
          setMusic(arrayOfMusic)
-         setId(arrayOfMusic.id)
        }
      } catch (error) {
        console.log(error)
@@ -41,7 +46,7 @@ const MainSearch = ({history}: RouteComponentProps) => {
        <Col>
        <h1 className="mx-5 title">Music Engine</h1>
        <Form.Control 
-         type="email" 
+         type="text" 
          placeholder="Search" 
          onChange={handleInput}
           />
@@ -66,7 +71,7 @@ const MainSearch = ({history}: RouteComponentProps) => {
 {music.map(p => (
     <tr>
       <td></td>
-     <Link to="/details" target='_blank'> <td>{p.title}</td> </Link>
+      <td music={music} id={p.id} onClick={() => history.push('/details/' + p.id)}>{p.title}</td> 
       <td>{p.artist.name}</td>
       <td>{p.album.title}</td>
     </tr>

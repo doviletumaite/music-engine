@@ -1,11 +1,14 @@
+import { Container } from "react-bootstrap"
 
 
 interface DetailProps {
     id: number
 }
-const Details = () => {
+const Details = (props: DetailProps) => {
 return(
-    <div></div>
+    <Container>
+      <p>  </p>
+    </Container>
 )
 }
 export default Details
