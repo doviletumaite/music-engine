@@ -2,18 +2,18 @@ import { ChangeEvent, useEffect, useState } from "react"
 import {Col, Form, Row, Table} from "react-bootstrap"
 import { RouteComponentProps } from "react-router"
 import Music from "../types/music"
-
+import Details from "./Details"
 
 
 interface MainSearcProps {
   id: number 
 }
-interface RouteComponentProps {
-  history: number
-  match: string
-}
+// interface RouteComponentProps {
+//   history: number
+//   match: string
+// }
 
-type AllTheProps = MainSearcProps & RouteComponentProps
+// type AllTheProps = MainSearcProps & RouteComponentProps
 
 const MainSearch = ({history}: RouteComponentProps & MainSearcProps ) => {
   const [music, setMusic] = useState<Music[]>([])
@@ -71,7 +71,9 @@ const MainSearch = ({history}: RouteComponentProps & MainSearcProps ) => {
 {music.map(p => (
     <tr>
       <td></td>
-      <td music={music} id={p.id} onClick={() => history.push('/details/' + p.id)}>{p.title}</td> 
+      <td onClick={() => history.push('/details/:' + p.id)}>
+        <Details/>
+        {p.title}</td> 
       <td>{p.artist.name}</td>
       <td>{p.album.title}</td>
     </tr>
