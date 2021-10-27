@@ -24,8 +24,8 @@ interface Artist {
 }
 
 interface Music {
-    album: Album[]
-    artist: Artist[]
+    album: Album
+    artist: Artist
     duration: number
     explicit_content_cover: number
     explicit_content_lyrics: number

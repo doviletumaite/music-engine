@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useState } from "react"
-import {Col, Form, Row} from "react-bootstrap"
+import {Col, Form, Row, Table} from "react-bootstrap"
 import Music from "../types/music"
 
 const MainSearch = () => {
@@ -28,10 +28,10 @@ const MainSearch = () => {
    }
 
  return(
-     <div>
+     <div className="m-5">
      <Row className="m-5">
        <Col>
-       <h1 className="mx-5">Music Engine</h1>
+       <h1 className="mx-5 title">Music Engine</h1>
        <Form.Control 
          type="email" 
          placeholder="Search" 
@@ -43,10 +43,32 @@ const MainSearch = () => {
        </Col>
      </Row>
 
-     <div>{music.map(p => (
-        <p>{p.title}</p>
-     ))}</div>
+    
+       <div > 
+        <Table striped bordered hover variant="dark" className="mr-5">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>TITLE</th>
+      <th>ARTIST</th>
+      <th>ALBUM</th>
+    </tr>
+  </thead>
+  <tbody>
+{music.map(p => (
+    <tr>
+      <td></td>
+      <td>{p.title}</td>
+      <td>{p.artist.name}</td>
+      <td>{p.album.title}</td>
+    </tr>
+     ))}
+  </tbody>
+</Table>
+</div>
+    
      </div>
+   
  )
 }
 export default MainSearch
